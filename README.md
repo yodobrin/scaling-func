@@ -28,6 +28,9 @@ The use case is a simple triggers processing system. The trigger is stored in a 
 
 ## Setup
 
+Over all the layout is as follows:
+![image](https://user-images.githubusercontent.com/37622785/206461103-ceae2eeb-bc88-4180-9c78-fa424efbde5b.png)
+
 1. Clone the repository
 
 2. Create a resource group
