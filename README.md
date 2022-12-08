@@ -1,20 +1,11 @@
 # Scaling Azure Functions - SqlTrigger
 
 This repository contains a sample project that demonstrates how to scale Azure Functions using the SqlTrigger.
-Deployment is done using the Azure Functions Core Tools, specifically the vscode extension.
+Deployment is done using the vscode extension.
 
-The use case is a simple triggers processing system. The trigger is stored in a Sql Database and the trigger is processed by a function. The function is triggered by a SqlTrigger. The function handeling is minimalistc, however it does demonstrate how to:
+The use case is a simple triggers processing system. The trigger is stored in a Sql Database and the trigger is processed by a function. The function is triggered by a SqlTrigger. The function handeling is minimalistc, but it does demonstrate how to scale the function, audit triggering process, and using Sql Database as a trigger and output binding.
 
-- Scale the function
-
-- Audit triggering process
-
-- Using Sql Database as a trigger
-
-- Using Sql Database as an output binding
-
-
-Over all the layout is as follows:
+The layout is as follows:
 
 ![image](https://user-images.githubusercontent.com/37622785/206461103-ceae2eeb-bc88-4180-9c78-fa424efbde5b.png)
 
