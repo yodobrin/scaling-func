@@ -14,6 +14,10 @@ The use case is a simple triggers processing system. The trigger is stored in a 
 - Using Sql Database as an output binding
 
 
+Over all the layout is as follows:
+
+![image](https://user-images.githubusercontent.com/37622785/206461103-ceae2eeb-bc88-4180-9c78-fa424efbde5b.png)
+
 ## Prerequisites
 
 - [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2)
@@ -27,9 +31,6 @@ The use case is a simple triggers processing system. The trigger is stored in a 
 > Note: The function app must be running on a premium plan.
 
 ## Setup
-
-Over all the layout is as follows:
-![image](https://user-images.githubusercontent.com/37622785/206461103-ceae2eeb-bc88-4180-9c78-fa424efbde5b.png)
 
 1. Clone the repository
 
