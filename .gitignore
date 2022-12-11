@@ -476,3 +476,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 local.settings.json
+deploy/bicep/local_params.json
