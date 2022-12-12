@@ -1,9 +1,18 @@
 # Scaling Azure Functions - SqlTrigger
 
 This repository contains a sample project that demonstrates how to scale Azure Functions using the SqlTrigger.
-Deployment is done using the vscode extension.
+The function deployment is done using the vscode extension.
 
-The use case is a simple triggers processing system. The trigger is stored in a Sql Database and the trigger is processed by a function. The function is triggered by a SqlTrigger. The function handeling is minimalistc, but it does demonstrate how to scale the function, audit triggering process, and using Sql Database as a trigger and output binding.
+The use case is a triggers processing system. The trigger is stored in a Sql Database and the trigger is processed by a function. The function is triggered by a SqlTrigger. The function handeling is minimalistc, but it does demonstrate how to scale the function, audit triggering process, and using Sql Database as a trigger and output binding.
+
+__This sample will cover the following topics:__
+
+- What are the prerequisites
+
+- Step-by-step instructions to deploy the solution 
+
+- Monitoring scale using LogAnalytics
+
 
 The layout is as follows:
 
@@ -128,3 +137,45 @@ select trigger_name, count(*)
 from [dbo].[trigger_history]
 group by trigger_name
 ```
+
+## Monitoring
+
+The function app is configured to use LogAnalytics. 
+
+You can use the following query to monitor the number of workers created.
+
+```sql
+traces
+| where timestamp between (datetime(2022-12-08 8:00) .. datetime(2022-12-08 14:00))
+| parse message with "Unprocessed change counts: " pastCounts:string ", " latestCount:int "], worker count: " workers:int *
+| where isnotnull(workers)
+| project timestamp, workers
+| render timechart;
+```
+
+Monitoring remaining changes to process
+
+```sql
+traces
+| where timestamp between (datetime(2022-12-08 8:00) .. datetime(2022-12-08 14:00))
+| parse message with "Unprocessed change counts: " pastCounts:string ", " latestCount:int "], worker count: " workers:int *
+| where isnotnull(latestCount)
+| project timestamp, latestCount
+| render timechart;
+```
+
+Scaling activities
+
+```sql
+traces
+| where timestamp between (datetime(2022-12-08 8:00) .. datetime(2022-12-08 14:00))
+| parse message with "Requesting " scaleRecommendation ": " *
+| where isnotempty(scaleRecommendation)
+| project
+    timestamp,
+    noScale = toint(scaleRecommendation == "no-scaling"),
+    scaleOut = toint(scaleRecommendation == "scale-out"),
+    scaleIn = toint(scaleRecommendation == "scale-in")
+| render timechart;
+```
+
