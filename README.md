@@ -27,7 +27,7 @@ The layout is as follows:
 
 2. Create a resource group
 
-3. Create Azure Sql Database (see prerequisites, you can choose the smallest tier) copy the connection string, you will need it later.
+3. Create Azure Sql Database (see prerequisites, you can choose the smallest tier) copy the connection string, you will need it later. 
 
 4. Create both tables in the database (see sql folder)
 
@@ -91,6 +91,28 @@ Repeat for any other missing package.
     }
 }
 ```
+
+### Using the Bicep code
+
+The repo also contains bicep code which will create the Sql Server, the control DB, and the FunctionApp. 
+
+1. Clone the repository
+
+2. Navigate to the bicep folder
+
+3. Create a resource group
+
+4. Modify the bicep parameters file and enter the SQL admin credentials.
+
+5. Run the following command in the terminal
+
+```bash
+az deployment group create --resource-group <your resource group> --template-file main.bicep --parameters @parame.json
+```
+
+6. Continue with step 5 in the previous section.
+
+8. In step 8, use the created FunctionApp which was created by the bicep code.
 
 ## Usage
 
