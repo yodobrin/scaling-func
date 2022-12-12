@@ -123,6 +123,8 @@ az deployment group create --resource-group <your resource group> --template-fil
 
 8. In step 8, use the created FunctionApp which was created by the bicep code.
 
+> Note: Azure Sql is preconfigured to block access, you will address this directly in the portal. For example adding your own IP as an exception, or adding the function app IP as an exception. It is not recommended to allow all azure resources to access the database.
+
 ## Usage
 
 1. Add a trigger to the triggers table. The trigger_state can be 0. The trigger will be processed by the function.
